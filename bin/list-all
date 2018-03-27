@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-curl -s https://dl.bintray.com/sbt/native-packages/sbt/ | \
+curl -Ls http://dl.bintray.com/typesafe/ivy-releases/org.scala-sbt/launcher/ | \
     grep 'href=' | \
     awk -F'>' '{print $3}' | awk -F'<' '{print $1}' | sed -e 's/\///g' | \
     sed -e 's/\n/ /g' | tr '\n' ' '
