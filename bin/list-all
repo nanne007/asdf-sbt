@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-curl -s https://dl.bintray.com/sbt/native-packages/sbt/ | \
-    grep 'href=' | \
-    awk -F'>' '{print $3}' | awk -F'<' '{print $1}' | sed -e 's/\///g' | \
-    sed -e 's/\n/ /g' | tr '\n' ' '
+curl -s -H "Accept: application/vnd.github+json" https://api.github.com/repos/sbt/sbt/releases?per_page=100 |
+    grep -e '.*"sbt-.*.tgz"' |
+    cut -d '"' -f 4 |
+    sed -e 's#^sbt-##' -e 's#.tgz$##' |
+    sort --version-sort |
+    xargs echo

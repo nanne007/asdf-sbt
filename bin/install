@@ -76,11 +76,10 @@ get_url_status() {
 get_download_url() {
   local install_type=$1
   local version=$2
-  local baseurl_bintray="https://dl.bintray.com/sbt/native-packages/sbt/${version}/sbt-${version}.tgz"
+  local baseurl_github="https://github.com/sbt/sbt/releases/download/v${version}/sbt-${version}.tgz"
 
-
-  if [[ "x200" == "x$(get_url_status "$baseurl_bintray")" ]]; then
-    echo "$baseurl_bintray"
+  if [[ "x200" == "x$(get_url_status "$baseurl_github")" ]]; then
+    echo "$baseurl_github"
   else
     echo "Distribution file not found. Exiting"
     exit 1
